@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 
 dotenv.config();
 const app = express();
@@ -11,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// MongoDB Connection (Ensure it only connects once)
+// MongoDB Connection (Ensure it connects only once)
 if (!mongoose.connection.readyState) {
     mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
@@ -21,14 +19,18 @@ if (!mongoose.connection.readyState) {
     .catch(err => console.log(err));
 }
 
-// Routes
+// ✅ Root Route to Confirm Server is Running
 app.get('/', (req, res) => {
     res.send('Vercel Node.js API is working!');
 });
 
+// Sample API Route
 app.get('/api/products', (req, res) => {
     res.json([{ id: 1, name: "Sample Product", price: 100 }]);
 });
 
-// Export as a Serverless Function
+// Start Local Server (Only for Local Development)
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+
 module.exports = app;
