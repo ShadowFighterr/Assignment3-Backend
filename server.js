@@ -47,5 +47,9 @@ app.post('/api/users/login', userController.loginUser);
 app.post('/api/orders', orderController.createOrder);
 app.get('/api/orders/:userId', orderController.getOrdersByUser);
 
+app.get('/', (req, res) => {
+    res.send('E-Commerce API is running...');
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
