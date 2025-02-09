@@ -2,3 +2,4 @@ node_modules/      # Ignore the node_modules folder (common in web apps)
 .env               # Ignore environment files with sensitive info
 *.log              # Ignore all files ending in .log
 tmp/*              # Ignore everything in the tmp directory
+.vercel
