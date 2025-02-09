@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const productController = require('../controllers/productController');
 
-// Sample route for testing
-router.get('/', (req, res) => {
-    res.send('Products API is working');
-});
+router.post('/', productController.createProduct);
+router.get('/', productController.getProducts);
+router.put('/:id', productController.updateProduct);
+router.delete('/:id', productController.deleteProduct);
 
 module.exports = router;
