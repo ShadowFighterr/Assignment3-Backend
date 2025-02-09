@@ -1,14 +1,14 @@
 # E-commerce API with MongoDB
 
 ## Project Overview
-This is a full-stack e-commerce web application using **Node.js, Express, MongoDB, and JWT Authentication**. It supports CRUD operations for products, users, and orders, and is ready for **deployment on Render or Heroku**.
+This is a backend API for an e-commerce platform using **Node.js, Express, MongoDB, and JWT Authentication**. It supports CRUD operations for products, users, and orders and is deployed on **Vercel**.
 
 ## Features
 - **MongoDB database** integration with Mongoose
 - **User authentication** with JWT and password hashing
 - **RESTful API** with CRUD operations
 - **Secure environment variables** using dotenv
-- **Deployment ready** with production configurations
+- **Deployment on Vercel**
 
 ## Installation
 ### Prerequisites:
@@ -48,7 +48,8 @@ This is a full-stack e-commerce web application using **Node.js, Express, MongoD
 | POST   | /api/orders       | Create a new order          |
 | GET    | /api/orders/:userId | Get orders for a user      |
 
-## Deployment Guide
+## Deployment Guide (Vercel)
+### 1. Deploying via GitHub
 1. Push your code to GitHub:
    ```bash
    git init
@@ -58,22 +59,28 @@ This is a full-stack e-commerce web application using **Node.js, Express, MongoD
    git remote add origin https://github.com/yourusername/ecommerce-app.git
    git push -u origin main
    ```
-2. Deploy on **Render**:
-   - Create a new web service
-   - Connect your GitHub repo
-   - Set up environment variables (`MONGO_URI`, `JWT_SECRET`, etc.)
-   - Click **Deploy**
-
-3. Deploy on **Heroku**:
+2. Go to **[Vercel](https://vercel.com/)** and log in.
+3. Create a **New Project** and select your GitHub repo.
+4. Set the **Build Command** as:
    ```bash
-   heroku create ecommerce-app
-   git push heroku main
-   heroku config:set MONGO_URI=your_mongodb_connection_string JWT_SECRET=your_jwt_secret
-   heroku open
+   npm install && npm run build
    ```
+5. Add **Environment Variables**:
+   - `MONGO_URI=your_mongodb_connection_string`
+   - `JWT_SECRET=your_jwt_secret`
+6. Click **Deploy**.
 
-## Screenshots
-- Add database design, API responses, and deployed app screenshots here.
+### 2. Redeploying Changes
+After making updates to the project, push your changes and redeploy:
+```bash
+vercel --prod
+```
+
+## Testing the API
+You can test the endpoints using **Postman** or **cURL**:
+```bash
+curl -X GET https://your-vercel-url/api/products
+```
 
 ## License
 MIT License.

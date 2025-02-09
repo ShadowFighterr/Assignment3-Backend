@@ -21,12 +21,14 @@ if (!mongoose.connection.readyState) {
     .catch(err => console.log(err));
 }
 
-// API Route
+// Routes
 app.get('/', (req, res) => {
     res.send('Vercel Node.js API is working!');
 });
 
-// Fix for Vercel: Export a function instead of a server
-module.exports = (req, res) => {
-    return app(req, res);
-};
+app.get('/api/products', (req, res) => {
+    res.json([{ id: 1, name: "Sample Product", price: 100 }]);
+});
+
+// Export as a Serverless Function
+module.exports = app;
